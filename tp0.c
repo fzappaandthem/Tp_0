@@ -11,7 +11,7 @@
 int main(void)
 {
 	/*---------------------------------------------------PARTE 2-------------------------------------------------------------*/
-	int conexion;
+	// int conexion;
 	char* ip;
 	char* puerto;
 	char* valor;
@@ -41,10 +41,12 @@ int main(void)
 	//enviar CLAVE al servidor
 	char *mensaje = config_get_string_value(config, "CLAVE");
 	enviar_mensaje(mensaje, socket_cliente);
-	liberar_conexion(socket_cliente);
-	// paquete(conexion);
 
-	terminar_programa(conexion, logger, config);
+	paquete(socket_cliente);
+
+	liberar_conexion(socket_cliente);
+
+	terminar_programa(socket_cliente, logger, config);
 	
 }
 
@@ -75,14 +77,25 @@ void leer_consola(t_log* logger)
 
 }
 
-void paquete(int conexion)
+void paquete(int socket_cliente)
 {
 	//Ahora toca lo divertido!
 
 	char* leido;
-	t_paquete* paquete;
 
+	t_paquete *paquete = crear_paquete();
 
+	while (strcmp((leido = readline(">")), "") != 0)
+	{
+		agregar_a_paquete(paquete, leido, (strlen(leido) +1 * sizeof(char)));
+		free(leido);
+	}
+
+	enviar_paquete(paquete, socket_cliente);
+
+	eliminar_paquete(paquete);
+
+	free(leido);
 }
 
 void terminar_programa(int conexion, t_log* logger, t_config* config)
@@ -90,4 +103,5 @@ void terminar_programa(int conexion, t_log* logger, t_config* config)
 	//Y por ultimo, para cerrar, hay que liberar lo que utilizamos (conexion, log y config) con las funciones de las commons y del TP mencionadas en el enunciado
 	log_destroy(logger);
 	config_destroy(config);
+	liberar_conexion(conexion);
 }
