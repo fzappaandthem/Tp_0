@@ -37,13 +37,12 @@ int main(void)
 
 	//antes de continuar, tenemos que asegurarnos que el servidor esté corriendo porque lo necesitaremos para lo que sigue.
 	//crear conexion
-	int socket = crear_conexion("127.0.0.1", "4444");
-
+	int socket_cliente = crear_conexion("127.0.0.1", "4444");
 	//enviar CLAVE al servidor
 	char *mensaje = config_get_string_value(config, "CLAVE");
-	enviar_mensaje(mensaje, socket);
-
-	paquete(conexion);
+	enviar_mensaje(mensaje, socket_cliente);
+	liberar_conexion(socket_cliente);
+	// paquete(conexion);
 
 	terminar_programa(conexion, logger, config);
 	
