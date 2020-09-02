@@ -1,0 +1,9 @@
+[INFO] 23:48:46:825 Servidor/(28255:28255): Servidor listo para recibir al cliente
+[INFO] 23:58:40:245 Servidor/(28943:28943): Servidor listo para recibir al cliente
+[INFO] 23:58:54:890 Servidor/(28943:28943): Se conecto un cliente!
+[INFO] 23:58:54:890 Servidor/(28943:28943): Me llego el mensaje Hola, soy un valor
+[ERROR] 23:58:54:891 Servidor/(28943:28943): el cliente se desconecto. Terminando servidor
+[INFO] 23:59:43:340 Servidor/(29054:29054): Servidor listo para recibir al cliente
+[INFO] 23:59:59:289 Servidor/(29054:29054): Se conecto un cliente!
+[INFO] 23:59:59:289 Servidor/(29054:29054): Me llego el mensaje Hola, soy un valor
+[ERROR] 23:59:59:290 Servidor/(29054:29054): el cliente se desconecto. Terminando servidor

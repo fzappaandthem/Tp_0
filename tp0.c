@@ -8,7 +8,6 @@
 #include "tp0.h"
 
 
-
 int main(void)
 {
 	/*---------------------------------------------------PARTE 2-------------------------------------------------------------*/
@@ -34,16 +33,15 @@ int main(void)
 	
 	//Loggear valor de config
 	log_info(logger, valor);
-
-
-
 	/*---------------------------------------------------PARTE 3-------------------------------------------------------------*/
 
 	//antes de continuar, tenemos que asegurarnos que el servidor esté corriendo porque lo necesitaremos para lo que sigue.
-
 	//crear conexion
+	int socket = crear_conexion("127.0.0.1", "4444");
 
-	//enviar CLAVE al servirdor
+	//enviar CLAVE al servidor
+	char *mensaje = config_get_string_value(config, "CLAVE");
+	enviar_mensaje(mensaje, socket);
 
 	paquete(conexion);
 
@@ -93,5 +91,4 @@ void terminar_programa(int conexion, t_log* logger, t_config* config)
 	//Y por ultimo, para cerrar, hay que liberar lo que utilizamos (conexion, log y config) con las funciones de las commons y del TP mencionadas en el enunciado
 	log_destroy(logger);
 	config_destroy(config);
-
 }
